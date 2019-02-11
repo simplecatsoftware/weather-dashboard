@@ -6,9 +6,6 @@
     "axios": "^0.18.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1",
-    "react-scripts": "2.1.4",
     "winston": "^3.2.1"
   },
   "scripts": {
@@ -25,5 +22,10 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "react-scripts": "2.1.4"
+  }
 }
