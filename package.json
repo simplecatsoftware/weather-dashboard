@@ -24,6 +24,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "node-sass": "^4.11.0",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-scripts": "2.1.4"
