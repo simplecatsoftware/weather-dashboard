@@ -13,6 +13,7 @@ const logger = winston.createLogger({
 });
 
 const app = express();
+app.use(express.static('build'));
 
 app.listen(
     process.env.PORT,
