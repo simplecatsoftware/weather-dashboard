@@ -7,7 +7,7 @@ const config = require('./package');
 const logger = winston.createLogger({
     level: 'info',
     format: winston.format.json(),
-    defaultMeta: { service: `${config.name}-server` },
+    defaultMeta: {service: `${config.name}-server`},
     transports: [
         new winston.transports.Console(),
     ],
@@ -24,14 +24,33 @@ if (process.env.DEBUG) {
     });
 }
 
-app.use(express.static('build'));
+app.use((req, res, next) => {
+    res.on('close', () => {
+        logger.info('response finished', {
+            request: {
+                method: req.method,
+                url: req.url,
+                query: req.query,
+                params: req.params,
+                data: req.data,
+            },
+            response: {
+                status: {
+                    code: res.statusCode,
+                    message: res.statusMessage,
+                },
+            },
+        });
+    });
+
+    next();
+});
 
 app.get('/api/location/:query', (req, res) => {
     const query = req.params.query;
 
-    axios.get(`${process.env.API_ENDPOINT}/location/search`, { params: { query } })
+    axios.get(`${process.env.API_ENDPOINT}/location/search`, {params: {query}})
         .then(response => {
-            console.log(response.data);
             res.send(response.data);
         })
         .catch(error => {
@@ -49,7 +68,11 @@ app.get('/api/weather/:woeid', (req, res) => {
         });
 });
 
+app.use(express.static('build'));
+
 app.listen(
     process.env.PORT,
-    () => { logger.info(`listening on port ${process.env.PORT}`) }
+    () => {
+        logger.info(`listening on port ${process.env.PORT}, debug mode is ${process.env.DEBUG ? 'on' : 'off'}`);
+    }
 );
