@@ -14,6 +14,16 @@ const logger = winston.createLogger({
 });
 
 const app = express();
+
+if (process.env.DEBUG) {
+    // If debug is enabled, disable CORS
+    app.use((req, res, next) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        next();
+    });
+}
+
 app.use(express.static('build'));
 
 app.get('/api/location/:query', (req, res) => {
