@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {
-    Col, Container,
+    Col, Collapse, Container,
+    Nav, Navbar, NavbarBrand, NavbarToggler, NavLink,
     Row
 } from 'reactstrap';
 
@@ -10,6 +11,9 @@ class App extends Component {
     render() {
         return (
             <div>
+                <Navbar expand={'sm'} light>
+                    <NavbarBrand>Weather Dashboard</NavbarBrand>
+                </Navbar>
                 <Container>
                     <Row>
                         <Col>
