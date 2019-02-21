@@ -34,6 +34,7 @@
     "react-dom": "^16.8.1",
     "react-scripts": "2.1.4",
     "react-select": "^2.3.0",
-    "reactstrap": "^7.1.0"
+    "reactstrap": "^7.1.0",
+    "lodash": "latest"
   }
 }
