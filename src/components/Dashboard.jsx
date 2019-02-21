@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {Container, Row} from "reactstrap";
+import {Col, Container, Row} from "reactstrap";
 import Menu from "./Menu";
 import Search from "./Search";
+import Weather from "./Weather";
 
 export default class Dashboard extends Component {
     constructor(props) {
@@ -46,7 +47,14 @@ export default class Dashboard extends Component {
                 </Menu>
                 <Container fluid>
                     <Row>
-
+                    {this.state.locations.map(location =>
+                        <Col className={`mb-3`}
+                             key={location.woeid}
+                             md={6}
+                        >
+                            <Weather location={location}/>
+                        </Col>
+                    )}
                     </Row>
                 </Container>
             </div>
