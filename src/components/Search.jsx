@@ -3,18 +3,12 @@ import PropTypes from 'prop-types';
 import Select from 'react-select';
 import {debounce} from "lodash";
 import Api from '../libs/Api';
+import propTypes from '../propTypes';
 
 export default class Search extends Component {
     static propTypes = {
         onLocationsUpdated: PropTypes.func.isRequired,
-        selectedLocations: PropTypes.arrayOf(PropTypes.shape({
-            latt_long: PropTypes.string.isRequired,
-            location_type: PropTypes.string.isRequired,
-            title: PropTypes.string.isRequired,
-            woeid: PropTypes.number.isRequired,
-            label: PropTypes.string.isRequired,
-            value: PropTypes.number.isRequired,
-        })).isRequired
+        selectedLocations: propTypes.locations.isRequired,
     };
 
     constructor(props) {
