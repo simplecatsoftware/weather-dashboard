@@ -3,6 +3,9 @@ const axios = require('axios');
 const express = require('express');
 const winston = require('winston');
 const config = require('./package');
+const {promisify} = require('util');
+const redis = require("redis");
+const crypto = require('crypto');
 
 const logger = winston.createLogger({
     level: 'info',
@@ -12,6 +15,39 @@ const logger = winston.createLogger({
         new winston.transports.Console(),
     ],
 });
+
+const client = redis.createClient({
+    url: process.env.REDIS_URL,
+});
+
+client.on("error", function (err) {
+    logger.error(`Redis connection failed ${err.toString()}`);
+    client.quit();
+});
+
+const data = {};
+
+const cacheClient = {
+    get: client.connected ?
+        promisify(client.get).bind(client) :
+        hash => (new Promise((resolve, reject) => {
+            try {
+                resolve(JSON.parse(data[hash]));
+            } catch (e) {
+                resolve();
+            }
+        })),
+    set: client.connected ?
+        promisify(client.set).bind(client) :
+        (hash, value) => (new Promise((resolve, reject) => {
+            try {
+                data[hash] = JSON.stringify(value);
+                resolve();
+            } catch (e) {
+                reject();
+            }
+        })),
+};
 
 const app = express();
 
