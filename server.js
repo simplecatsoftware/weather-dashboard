@@ -82,6 +82,39 @@ app.use((req, res, next) => {
     next();
 });
 
+const request = (url, params) => {
+    const hash = crypto.createHash('sha1').update(JSON.stringify([url, params, (new Date()).toJSON().slice(0, 10)])).digest("hex");
+
+    return cacheClient.get(hash)
+        .then(result => {
+            if (result) {
+                logger.info(`Cache hit`, {hash, result});
+                try {
+                    return JSON.parse(result);
+                } catch (e) {}
+            }
+
+            return axios.get(`${process.env.API_ENDPOINT}/location/search`, {params})
+                .then(response => response.data)
+                .then(data => {
+                    return cacheClient
+                        .set(hash, data)
+                        .then(() => {
+                            logger.info(`Cache set`, {hash, data});
+                            return data;
+                        })
+                })
+                .catch(error => {
+                    logger.error(`Could not retrieve data from api ${error.toString()}`);
+                    throw error;
+                })
+        })
+        .catch(error => {
+            logger.error(`Could not retrieve data from cache ${error.toString()}`)
+            throw error;
+        });
+};
+
 app.get('/api/location/:query', (req, res) => {
     const query = req.params.query;
 
