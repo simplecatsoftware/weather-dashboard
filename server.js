@@ -118,22 +118,23 @@ const request = (url, params) => {
 app.get('/api/location/:query', (req, res) => {
     const query = req.params.query;
 
-    axios.get(`${process.env.API_ENDPOINT}/location/search`, {params: {query}})
-        .then(response => {
-            res.send(response.data);
+    request(`${process.env.API_ENDPOINT}/location/search`, {query})
+        .then(data => {
+            res.send(data);
         })
         .catch(error => {
-            res.send(error.response.data);
+            console.log(error);
+            res.status(200).send(error.response.data);
         });
 });
 
 app.get('/api/weather/:woeid', (req, res) => {
-    axios.get(`${process.env.API_ENDPOINT}/location/${req.params.woeid}`)
-        .then(response => {
-            res.send(response.data);
+    request(`${process.env.API_ENDPOINT}/location/${req.params.woeid}`)
+        .then(data => {
+            res.send(data);
         })
         .catch(error => {
-            res.send(error.response.data);
+            res.status(error.response.status).send(error.response.data);
         });
 });
 
