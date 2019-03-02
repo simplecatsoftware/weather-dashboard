@@ -6,10 +6,10 @@ class Footer extends Component {
     render() {
         return (
             <Navbar color="faded" light fixed={'bottom'}>
-                <NavbarBrand className={'text-center mx-auto'}>
+                <div className={'navbar-text text-center mx-auto'}>
                     Developed by Simple Cat Software<br/>
                     Powered by data from <a href={'https://www.metaweather.com/'} target={'_blank'}>MetaWeather</a>
-                </NavbarBrand>
+                </div>
             </Navbar>
         );
     }
