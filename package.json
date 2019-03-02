@@ -2,14 +2,6 @@
   "name": "weather-dashboard",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "axios": "^0.18.0",
-    "dotenv": "^6.2.0",
-    "express": "^4.16.4",
-    "lodash": "^4",
-    "redis": "^2.8.0",
-    "winston": "^3.2.1"
-  },
   "scripts": {
     "serve": "node server",
     "dev": "react-scripts start",
@@ -25,6 +17,14 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "lodash": "^4",
+    "redis": "^2.8.0",
+    "winston": "^3.2.1"
+  },
   "devDependencies": {
     "bootstrap": "^4.3.1",
     "bootswatch": "^4.2.1",
