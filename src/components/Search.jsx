@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import {debounce} from "lodash";
-import Api from '../libs/Api';
+import Api from '../Api';
 import propTypes from '../propTypes';
 
 export default class Search extends Component {

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {get} from 'lodash';
 import {Card, CardHeader} from "reactstrap";
 import propTypes from '../propTypes';
-import Api from '../libs/Api';
+import Api from '../Api';
 
 export default class Weather extends Component {
     static propTypes = {
