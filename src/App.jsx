@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Col, Container, Row} from "reactstrap";
+import ReactGA from "react-ga";
 import Footer from "./components/Footer";
 import Menu from "./components/Menu";
 import Search from "./components/Search";
@@ -16,6 +17,9 @@ export default class App extends Component {
         };
 
         this.onLocationsUpdated = this.onLocationsUpdated.bind(this);
+
+        ReactGA.initialize('UA-135470699-1');
+        ReactGA.pageview(window.location.pathname);
     }
 
     componentDidMount() {
