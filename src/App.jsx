@@ -42,7 +42,7 @@ export default class App extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{marginBottom: 75}}>
                 <Menu>
                     <Search onLocationsUpdated={this.onLocationsUpdated}
                             selectedLocations={this.state.locations}
