@@ -23,7 +23,7 @@ export default class Menu extends Component {
                 <NavbarBrand>Weather Dashboard</NavbarBrand>
                 <NavbarToggler onClick={this.toggle}/>
                 <Collapse isOpen={this.state.navIsOpen} navbar>
-                    <Nav className="ml-auto d-flex" navbar>
+                    <Nav className="ml-auto pt-3 pt-sm-0 d-flex" navbar>
                         {this.props.children}
                     </Nav>
                 </Collapse>
