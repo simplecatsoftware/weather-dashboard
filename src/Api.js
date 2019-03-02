@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default new class Api {
-    _apiPrefix = 'http://localhost:4000/api';
+    _apiPrefix = '/api';
 
     search(location) {
         return this._request(`${this._apiPrefix}/location/${location}`);
