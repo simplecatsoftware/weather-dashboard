@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {Col, Container, Row} from "reactstrap";
+import Footer from "./components/Footer";
 import Menu from "./components/Menu";
 import Search from "./components/Search";
 import Weather from "./components/Weather";
 
 import './App.scss';
-import Footer from "./components/Footer";
 
 export default class App extends Component {
     constructor(props) {
