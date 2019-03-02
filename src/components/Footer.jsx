@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import {Navbar, NavbarBrand} from "reactstrap";
+import {Navbar} from "reactstrap";
 
-class Footer extends Component {
+export default class Footer extends Component {
     render() {
         return (
             <Navbar color="faded" light fixed={'bottom'}>
@@ -14,7 +13,3 @@ class Footer extends Component {
         );
     }
 }
-
-Footer.propTypes = {};
-
-export default Footer;
