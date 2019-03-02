@@ -1,11 +1,13 @@
-require('dotenv').config();
 const axios = require('axios');
-const express = require('express');
-const winston = require('winston');
 const config = require('./package');
-const {promisify} = require('util');
-const redis = require("redis");
 const crypto = require('crypto');
+const express = require('express');
+const redis = require("redis");
+const winston = require('winston');
+const {get, set} = require('lodash');
+const {promisify} = require('util');
+
+require('dotenv').config();
 
 const logger = winston.createLogger({
     level: 'info',
