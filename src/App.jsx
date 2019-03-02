@@ -33,7 +33,7 @@ export default class App extends Component {
         this.setState(prevState => ({
             ...prevState,
             locations,
-        }))
+        }));
     }
 
     onLocationsUpdated(locations) {
