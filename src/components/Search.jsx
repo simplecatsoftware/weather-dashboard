@@ -4,6 +4,7 @@ import Select from 'react-select';
 import {debounce} from "lodash";
 import Api from '../Api';
 import propTypes from '../propTypes';
+import ReactGA from "react-ga";
 
 export default class Search extends Component {
     static propTypes = {
@@ -37,13 +38,18 @@ export default class Search extends Component {
             if (query.length < 4) {
                 this.setState(prevState => ({
                     ...prevState,
-
                 }));
             }
 
             this.setState(prevState => ({...prevState, query}), () => {
                 if (loading) {
                     this.setState(prevState => ({...prevState, loading}));
+
+                    ReactGA.event({
+                        category: 'User',
+                        action: 'Searched',
+                        label: query,
+                    });
 
                     Api.search(query)
                         .then(locations => {
