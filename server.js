@@ -89,7 +89,13 @@ app.use((req, res, next) => {
 });
 
 const request = (url, params) => {
-    const hash = crypto.createHash('sha1').update(JSON.stringify([url, params, (new Date()).toJSON().slice(0, 10)])).digest("hex");
+    const hash = crypto.createHash('sha1')
+        .update(JSON.stringify([
+            url,
+            params,
+            (new Date()).toJSON().slice(0, 10)
+        ]))
+        .digest("hex");
 
     return cacheClient.get(hash)
         .then(result => {
