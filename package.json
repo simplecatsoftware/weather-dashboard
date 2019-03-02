@@ -1,9 +1,9 @@
 {
-  "name": "weather-dashboard",
+  "name": "sc-weather-dashboard",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "yarn build && yarn serve",
+    "start": "yarn serve",
     "serve": "node server",
     "dev": "react-scripts start",
     "build": "react-scripts build",
