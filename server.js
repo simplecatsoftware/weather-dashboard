@@ -94,7 +94,7 @@ const request = (url, params) => {
                 } catch (e) {}
             }
 
-            return axios.get(`${process.env.API_ENDPOINT}/location/search`, {params})
+            return axios.get(url, {params})
                 .then(response => response.data)
                 .then(data => {
                     return cacheClient
