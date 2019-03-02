@@ -12,7 +12,7 @@ export default class Weather extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {weather: null};
+        this.state = {weather: []};
 
         this.getWeather = this.getWeather.bind(this);
         this.setWeather = this.setWeather.bind(this);
@@ -27,8 +27,7 @@ export default class Weather extends Component {
 
         try {
             weather = JSON.parse(localStorage.getItem(`weather-${this.props.location.woeid}`));
-        } catch (e) {
-        }
+        } catch (e) { }
 
         if (
             weather
@@ -37,9 +36,10 @@ export default class Weather extends Component {
             return this.setWeather(weather);
         }
 
-        Api.weather(this.props.location.woeid)
-            .then(weather => {
-                this.setWeather(weather);
+        Api.weather(this.props.location.woeid, new Date())
+            .then(weather => this.setWeather(weather))
+            .catch(error => {
+                console.log(error);
             });
     }
 
