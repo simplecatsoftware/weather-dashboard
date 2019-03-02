@@ -6,7 +6,7 @@ export default class Menu extends Component {
         super(props);
         this.state = {
             navIsOpen: false,
-        }
+        };
 
         this.toggle = this.toggle.bind(this);
     }
