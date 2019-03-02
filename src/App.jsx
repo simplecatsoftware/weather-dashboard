@@ -38,6 +38,37 @@ export default class App extends Component {
 
     onLocationsUpdated(locations) {
         this.setState(prevState => {
+            locations
+                .filter(newLocation =>
+                    !prevState.locations.map(prevLocation =>
+                        prevLocation.woeid
+                    ).includes(newLocation.woeid)
+                )
+                .forEach(location => {
+                    ReactGA.event({
+                        category: 'User',
+                        action: 'Selected Location',
+                        label: location.title,
+                        value: location.woeid,
+                    });
+                });
+
+            prevState.locations
+                .filter(location =>
+                    !locations.map(newLocation =>
+                        newLocation.woeid
+                    ).includes(location.woeid)
+                )
+                .forEach(location => {
+                    ReactGA.event({
+                        category: 'User',
+                        action: 'Deselected Location',
+                        label: location.title,
+                        value: location.woeid,
+                    });
+                });
+
+
             return {...prevState, locations};
         }, () => {
             localStorage.setItem('locations', JSON.stringify(locations));
