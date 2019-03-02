@@ -38,7 +38,6 @@ export default class Search extends Component {
             if (query.length < 4) {
                 this.setState(prevState => ({
                     ...prevState,
-
                 }));
             }
 
