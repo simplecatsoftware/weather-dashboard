@@ -27,27 +27,31 @@ client.on("error", function (err) {
     client.quit();
 });
 
-const data = {};
+const memoryCache = {};
 
 const cacheClient = {
     get: client.connected ?
         promisify(client.get).bind(client) :
-        hash => (new Promise((resolve, reject) => {
+        hash => (new Promise((resolve) => {
+            logger.debug(`using memory cache`, {hash});
             try {
-                resolve(JSON.parse(data[hash]));
+                resolve(JSON.parse(get(memoryCache, hash)));
             } catch (e) {
-                resolve();
+                resolve(get(memoryCache, hash));
             }
         })),
+
     set: client.connected ?
         promisify(client.set).bind(client) :
-        (hash, value) => (new Promise((resolve, reject) => {
+        (hash, value) => (new Promise(resolve => {
+            logger.debug(`using memory cache`, {hash, value});
             try {
-                data[hash] = JSON.stringify(value);
-                resolve();
+                set(memoryCache, hash, JSON.stringify(value));
             } catch (e) {
-                reject();
+                set(memoryCache, hash, value);
             }
+
+            resolve(value);
         })),
 };
 
