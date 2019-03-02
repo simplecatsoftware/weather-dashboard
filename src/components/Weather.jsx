@@ -29,11 +29,12 @@ export default class Weather extends Component {
 
         try {
             weather = JSON.parse(localStorage.getItem(`weather-${this.props.location.woeid}`));
-        } catch (e) { }
+        } catch (e) {
+        }
 
         if (
             weather
-            && get(weather, 'consolidated_weather[0].applicable_date') === (new Date()).toJSON().slice(0, 10)
+            && get(weather, '[0].applicable_date') === (new Date()).toJSON().slice(0, 10)
         ) {
             return this.setWeather(weather);
         }
