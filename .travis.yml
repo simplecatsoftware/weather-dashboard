@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+    - node_modules
+script:
+  - yarn test
+  - yarn build
+deploy:
+  provider: heroku
+  skip_cleanup: true
+  on:
+    branch: master
+  api_key:
+    secure: RdpuadmTgHOWt95Nk+qSiD4FogKAjI5orP4jGGb8ms6KohVhl+vJ4vy5nCg33F6cgOm/p86L7fpDjRd9aJnYCvRJEs5THM0A8HbbFqpAvRxH1d4S+vF67poVDjf4iGex8THKvK630zsOrmuZKc1Oy6YgS5Ljlo0ZLAm3gfefeUOhFGfjJX59pEtFD/HzxedMEic8aF7Wxni9f1C4piRzpGVpRoS7CuF292xyMzzbUMVMUh/0lwdGU+AqIxBbDLSVCL19LoGfc+YVAGQdKp2M8q866zddInugeP/7Yy12E1kmlmUdldFBGo0JY/LmGxPfr/49O3/4s1+rJqlSEkidybvQPNX6lKKmxkf6nfy5nZwEjGJcCKBph+P4pkteOAFpqwZrDRmz5sVMwcdFvrQfPWA/gZnFecrdqHzuP90L0NNjF0uknfPFh/9CrhZ6lk+JGqmV9s9+3NCCC+fCob5RYlU2ZWYV/gaNga/bUau5/I4eVGs/BB/6hgXsNg2qY43/8ZkqLlnYt+FVcVxpeSKSXw9B8YeTwRLkM8G2KrrdBI6kC4mKxJ2DHz7len8JpvhBaMrGzVSQcMAaWA8qV8c+LOrrVrYepHkl9X/UNPAtHaB8BfjCtToouCu2IO1zB4/623B3NpzKYxPQFpQ8C8an6r4X417K6vscY0ikRRBUdQ8=
