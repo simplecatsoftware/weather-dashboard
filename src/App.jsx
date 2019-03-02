@@ -16,8 +16,10 @@ export default class App extends Component {
 
         this.onLocationsUpdated = this.onLocationsUpdated.bind(this);
 
-        ReactGA.initialize('UA-135470699-1');
-        ReactGA.pageview(window.location.pathname);
+        try {
+            ReactGA.initialize('UA-135470699-1');
+            ReactGA.pageview(window.location.pathname);
+        } catch (e) { }
     }
 
     componentDidMount() {
@@ -25,8 +27,7 @@ export default class App extends Component {
 
         try {
             locations = JSON.parse(localStorage.getItem('locations')) || [];
-        } catch (e) {
-        }
+        } catch (e) { }
 
         this.setState(prevState => ({
             ...prevState,
