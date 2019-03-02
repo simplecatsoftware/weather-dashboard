@@ -7,8 +7,14 @@ export default new class Api {
         return this._request(`${this._apiPrefix}/location/${location}`);
     }
 
-    weather(woeid) {
-        return this._request(`${this._apiPrefix}/weather/${woeid}`);
+    weather(woeid, date=null) {
+        let url = `${this._apiPrefix}/weather/${woeid}`;
+
+        if (date) {
+            url += `/${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+        }
+
+        return this._request(url);
     }
 
     _request(url) {

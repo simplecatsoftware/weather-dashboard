@@ -142,8 +142,14 @@ app.get('/api/location/:query', (req, res) => {
         });
 });
 
-app.get('/api/weather/:woeid', (req, res) => {
-    request(`${process.env.API_ENDPOINT}/location/${req.params.woeid}`)
+app.get('/api/weather/:woeid/:year?/:month?/:day?', (req, res) => {
+    let url = `${process.env.API_ENDPOINT}/location/${req.params.woeid}`;
+
+    if (req.params.year && req.params.month && req.params.day) {
+        url += `/${req.params.year}/${req.params.month}/${req.params.day}`;
+    }
+
+    request(url)
         .then(data => {
             res.send(data);
         })
