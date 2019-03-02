@@ -97,9 +97,12 @@ const request = (url, params) => {
                 logger.info(`Cache hit`, {hash, result});
                 try {
                     return JSON.parse(result);
-                } catch (e) {}
+                } catch (e) {
+                    return result;
+                }
             }
 
+            logger.info(`Requesting from api`, {hash, url, params});
             return axios.get(url, {params})
                 .then(response => response.data)
                 .then(data => {
@@ -129,8 +132,7 @@ app.get('/api/location/:query', (req, res) => {
             res.send(data);
         })
         .catch(error => {
-            console.log(error);
-            res.status(200).send(error.response.data);
+            res.status(error.response.statusCode).send(error.response.data);
         });
 });
 
