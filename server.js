@@ -116,7 +116,7 @@ const request = (url, params) => {
                 })
         })
         .catch(error => {
-            logger.error(`Could not retrieve data from cache ${error.toString()}`)
+            logger.error(`Could not retrieve data from cache ${error.toString()}`);
             throw error;
         });
 };
