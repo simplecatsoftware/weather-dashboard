@@ -52,7 +52,9 @@ export default class App extends Component {
                         {this.state.locations.map(location =>
                             <Col className={`mb-3`}
                                  key={`weather-${location.woeid}`}
+                                 lg={4}
                                  md={6}
+                                 sm={12}
                             >
                                 <Weather location={location}/>
                             </Col>
