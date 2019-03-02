@@ -5,6 +5,7 @@ import Search from "./components/Search";
 import Weather from "./components/Weather";
 
 import './App.scss';
+import Footer from "./components/Footer";
 
 export default class App extends Component {
     constructor(props) {
@@ -61,6 +62,7 @@ export default class App extends Component {
                         )}
                     </Row>
                 </Container>
+                <Footer />
             </div>
         );
     }
