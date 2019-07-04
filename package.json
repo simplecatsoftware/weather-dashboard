@@ -7,7 +7,9 @@
     "serve": "node server",
     "dev": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -24,7 +26,8 @@
     "express": "^4.16.4",
     "lodash": "^4",
     "redis": "^2.8.0",
-    "winston": "^3.2.1"
+    "winston": "^3.2.1",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "bootstrap": "^4.3.1",
@@ -40,5 +43,6 @@
     "react-scripts": "2.1.4",
     "react-select": "^2.3.0",
     "reactstrap": "^7.1.0"
-  }
+  },
+  "snyk": true
 }
