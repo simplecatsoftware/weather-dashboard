@@ -19,7 +19,7 @@
     "not op_mini all"
   ],
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "lodash": "^4",
